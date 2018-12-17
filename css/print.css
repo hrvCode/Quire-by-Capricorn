@@ -1,0 +1,45 @@
+/* bugg fix for layout.css, that cannot be inserted there */
+@media only screen and (min-width: 764px){
+  .ql-editor{
+ 
+  }
+}
+@media print{
+  nav, .collapse-mobile, .ql-toolbar, #popUp, #navSec,
+  #topNav, #menu, #noteList, #notes, #searchField{
+    display: none !important;
+  }
+  #editorContainer{
+    display:block;
+    margin:0;
+    padding:0;
+    height: auto !important;
+    width:595px;
+    overflow: visible !important;
+  }
+  .ql-container *{
+    color: #000 !important;
+  }
+  body,html{
+    overflow: visible !important;
+    height: auto;
+  }
+
+  #editor{
+    min-width: 100% !important;
+    display:block;
+    border: none;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+ /* Ql-editor size of a a4; */
+  .ql-editor{
+    padding:0 !important;
+    margin:0 !important;
+    min-height: 100% !important;
+    width:595px !important;
+    border:none !important;
+    overflow: visible !important;
+  }
+}

@@ -1,0 +1,611 @@
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+body, html{
+    margin:0;
+}
+
+.none {
+    display: none;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+::-webkit-scrollbar {
+    width: 0; 
+    background: transparent;  /* Makes scrollbar invisible */
+}
+
+/*---------------------------------------------------------------------------
+  -                               GRID                                      -
+  --------------------------------------------------------------------------- */
+#nav { grid-area: nav; }
+#main { grid-area: main; }
+#navSec { grid-area: navSec; }
+#topNav { grid-area: topNav; }
+#menu { grid-area: menu; }
+#notes { grid-area: notes; }
+#searchField { grid-area: searchField; }
+#noteList { grid-area: noteList; }
+#editor { grid-area: editor; }
+#ql-toolbar { grid-area: ql-toolbar; }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+     grid-template-areas:
+        'nav'
+        'main'; /* Main = Editor container but has to be specified as main to work */
+    padding: 0;
+}
+
+#editorContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 14fr;
+     grid-template-areas:
+        'ql-toolbar'
+        'editor';
+    padding: 0;
+    min-height: 100vh;
+}
+
+/*---------------------------------------------------------------------------
+  -                               POP-UPS                                   -
+  --------------------------------------------------------------------------- */
+
+#popUpBg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+}
+
+.popUpContainer {
+    position: fixed;
+    width: 70vw;
+    height: auto;
+    left: 15vw;
+    z-index: 25;
+}
+
+.exitPopUp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 2vw;
+    z-index: 27;
+    
+}
+
+.exitPopUp p {
+    font-size: 2rem;
+    z-index: 26;
+}
+
+#popUpContainer:hover, .exitPopUp:hover {
+    cursor: pointer;
+}
+
+.popUpContent {
+    background-color: white;
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    padding: 2em 1em;
+    color: #213d57;
+    z-index: 18;
+}
+
+.popUpContent h2 {
+    margin: 0;
+    z-index: 19;
+}
+
+.popUpContent button {
+    height: 1cm;
+    border: rgba(255, 255, 255, .5);
+    border-radius: 5%;
+    background-color: #105493;
+    color: white;
+    cursor: pointer;
+    -webkit-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.popUpContent button:hover{
+    background-color: #213d57;
+}
+
+#tutorial.popUpContainer {
+    top: 20vh;
+}
+
+#unsavedContent.popUpContainer {
+    top: 30vh;
+}
+
+#chooseTheme.popUpContainer {
+    top: 10vh;
+}
+
+/*------------------------------------------------------------
+  -                      THEME VIEW                          -
+  ------------------------------------------------------------ */
+#themeChoice {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+#themeChoice div {
+    width: 8em;
+    height: 8em;
+    margin:auto;
+    margin-top: 1em;
+}
+
+#themeChoice img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+#themeChoice img:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------
+  -                      NAV                                                -
+  --------------------------------------------------------------------------- */
+/*------------------------------------------------------------
+  -                      NAVSEC                              -
+  ------------------------------------------------------------ */
+
+#navSec {
+    background-color: #105493;
+}
+
+/*-------------------------------------------------
+  -                      TOPNAV                   -
+  ------------------------------------------------- */
+
+#topNav {
+    background-color:#213d57;
+    height: 4em;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+#logo {
+    height: 2.5em;
+    width: auto;
+    padding: 0;
+    margin-left: 1.5em;
+}
+
+#hamburgerIcon{
+    display: block;
+    color: white;
+    right: 0.7em;
+    font-size: 42px; 
+    margin-right: 1.5rem;
+}
+
+.ham1, .ham2, .ham3{
+  width: 35px;
+  height: 5px;
+  background-color: #fff;
+  margin: 6px 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.merge .ham1{
+  -webkit-transform: rotate(-45deg) translate(-8px, 6px) ;
+  transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+.merge .ham2{
+ opacity: 0;
+}
+
+.merge .ham3{
+  -webkit-transform: rotate(45deg) translate(-10px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/*-------------------------------------------------
+  -                      MENU                     -
+  ------------------------------------------------- */
+
+#menu {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 5em;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+   
+}
+
+.menuIcon{
+    background-color: inherit;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.menuIcon:hover{
+    background-color: #213d57;
+}
+
+.icon{
+    margin: 1em auto;
+    max-height: 2em;
+    max-width: 2em;
+    display: block;
+    font-size: 25px;
+    color: white;
+}
+
+#noteList .fa-star{
+    float: right;
+    margin-right: 2%;
+    margin-top: 3%;
+}
+
+.yellowStar{
+    color:goldenrod;
+}
+
+/*------------------------------------------------------------
+  -                      NOTES                               -
+  ------------------------------------------------------------ */
+
+#notes {
+    overflow: auto;
+}
+/*-------------------------------------------------
+  -                   SEARCH FIELD                   -
+  ------------------------------------------------- */
+
+#searchField {
+    background-color:#115493;
+}
+
+#searchIcon{
+    display: none;
+}
+
+form {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+
+input {
+	outline: none;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none;
+}
+
+#searchInput {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+	border: none;
+	padding: 0.7em;
+    width: 60%;
+    margin: 3% auto;
+	border-radius: 10em;
+	-webkit-transition: all .5s;
+	transition: all .5s;
+}
+
+input:-moz-placeholder {
+    color: #999;
+    text-align: center;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+    text-align: center;
+}
+
+/*-------------------------------------------------
+  -                   NOTE LIST                   -
+  ------------------------------------------------- */
+
+#noteList {
+    background-color: #ebebeb;
+    min-height: 3em;
+    max-height: 10em;
+    overflow-y: scroll;
+    border-bottom: 1px solid darkgrey;
+    font-family: sans-serif;
+}
+
+/* The style for the current note in the note list */
+.current-style {
+  background: #fff;
+  outline: 1px solid #115493;
+}
+
+/*---------------------------------------
+  -            CLICK NOTE LIST          -
+  --------------------------------------- */
+  
+#clickNoteList { /* Div containing all note divs in note list - click lo show text in edito */
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+#clickNoteList article { /* Divs created for each note in notelist */
+    height: 3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#clickNoteList article:hover { /* When hovering over any notelist obj */
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+#clickNoteList article h4, #clickNoteList article p { /* All text in div for notes in notelist */
+    padding-left: 10px;
+    color: black;
+    margin: 0.3em 0 0 0;
+}
+
+#clickNoteList article h4 { /* Heading (title) in div for notes in notelist */
+    font-size: 1em;
+    margin: 0;
+}
+
+#clickNoteList article p { /* Text (time & date) in div for notes in notelist */
+    font-size: 0.8em;
+    color: #777;
+}
+
+.noteListIconDiv {
+    height: 100%;
+    padding: 0 0.5em; 
+    float: right;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-evenly;
+}
+
+.deleteIcon {
+    opacity: 0.2;
+    margin-top: 0;
+}
+
+#noteList .fa-star { /* Star icon in div for notes in notelist */
+    opacity: 0.2;
+    margin-top: 0;
+}
+
+#noteList .fa-star:hover, .deleteIcon:hover { /* On hover over star icon or delete icon in div for notes in notelist */
+    opacity: 1;
+}
+
+/*---------------------------------------------------------------------------
+  -                      MAIN                                               -
+  --------------------------------------------------------------------------- */
+/*------------------------------------------------------------
+  -                EDITOR CONTAINER (QUILL EDITOR)           -
+  ------------------------------------------------------------ */
+/*-------------------------------------------------
+  -                      TOOLBAR                   -
+  ------------------------------------------------- */
+
+.ql-toolbar-fixed{
+    position: fixed;
+    background: #fff;
+    z-index: 10;
+    left:0;
+    top:0;
+    right:0;
+    -webkit-transition: top 0.3s;
+    transition: top 0.3s;
+}
+
+.ql-toolbar.ql-snow{
+    padding: 0.7em !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.ql-toolbar-inherit{
+    position: inherit;
+}
+
+.ql-toolbar.ql-snow .ql-formats { /* Container for toolbar content */
+    margin-right: 0 !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 100%;
+}
+
+/*-----------------------------------------
+  -             TOOLBAR CONTENT            -
+  ----------------------------------------- */
+#save{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+}
+
+/* Everything in toolbar */
+#saveIcon, #editorContainer > div > span > span, #editorContainer > div > span > select, #editorContainer > div > span > button {
+    height: 8vw !important;
+    width: auto !important;
+    padding: 0.5em 0.25em !important;
+    color: #444;
+}
+
+#editorContainer > div > span > span:first-child { /* Drop down Header container*/
+    padding: 0 !important;
+    width: 20vw !important;
+}
+
+.ql-toolbar.ql-snow .ql-picker-label { /* Drop down Header lable */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 0 !important;
+    font-size: 4vw !important;
+}
+
+#editorContainer > div > span > span:first-child > span:last-child > span{ /* Alternative in drop down header */
+    font-size: 2.5vw !important;
+    height: 7vw !important;
+}
+
+#editorContainer > div > span > span:nth-child(6) { /* Text align */
+    width: 10vw !important;
+    height: 8vw !important;
+}
+
+#saveIcon {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+#saveIcon i{
+    font-size: 5vw !important;
+}
+
+#save:hover {
+    cursor: pointer;
+}
+
+#load-wrapp {
+    text-align: center;
+    float: left;
+    width: 100%;
+    height: 2em;
+    padding: 0.5em 0.25em;
+    border-radius: 5px;
+    text-align: center;;
+}
+
+.line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #4b9cdb;
+}
+
+.load-8 .line {
+    -webkit-animation: loadingH 1.5s cubic-bezier(.17,.37,.43,.67) infinite;
+            animation: loadingH 1.5s cubic-bezier(.17,.37,.43,.67) infinite;
+}
+
+@-webkit-keyframes loadingH {
+    0% {width: 15px;}
+    50% {width: 35px; padding: 4px;}
+    100% {width: 15px;}
+}
+
+@keyframes loadingH {
+    0% {width: 15px;}
+    50% {width: 35px; padding: 4px;}
+    100% {width: 15px;}
+}
+
+.ql-snow.ql-toolbar:after, .ql-snow .ql-toolbar:after {
+    content: none !important;
+}
+
+/*-------------------------------------------------
+  -                      EDITOR                   -
+  ------------------------------------------------- */
+
+.ql-editor{
+    overflow-x:hidden;
+    max-height: 93vh;
+ }
+ 
+#editor{
+  overflow-x: hidden;
+  height: auto;
+}
